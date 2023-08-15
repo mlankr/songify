@@ -1,0 +1,40 @@
+### System Files ###
+.DS_Store
+
+# environment file
+.env
+
+# Optional npm cache directory
+.npm
+
+# Dependency directories
+/node_modules
+/bower_components
+
+# Optional eslint cache
+.eslintcache
+
+# workspace files are user-specific
+*.sublime-workspace
+
+### PhpStorm/IntelliJ ###
+/.idea
+modules.xml
+*.ipr
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.TemporaryItems
+.Trashes
+
+.bash_history
+xdebug/
+src/public/includes/utils/*
+src/public/assets/scss/
+
+# pull script dump
+db/
+src/scripts/dump.sql
+src/scripts/dump.sql-e

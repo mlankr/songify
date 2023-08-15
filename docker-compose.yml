@@ -1,0 +1,57 @@
+version: '3.5' # specify docker-compose version
+
+networks:
+  backend:
+
+volumes:
+  database: {}
+
+services:
+    songify-web:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      hostname: ${DOCKER_HOST_NAME_LOCAL_WEB}
+      container_name: ${DOCKER_CONTAINER_NAME_LOCAL_WEB}
+      expose:
+        - 80
+      ports:
+        - "80:80"
+      volumes:
+        - ./src/public:/var/www/html
+        - ./.bash_history:/root/.bash_history
+      environment:
+        - ENVIRONMENT=${ENVIRONMENT}
+      networks:
+        - backend
+
+    songify-mysql:
+      image: mysql:${MYSQL_VERSION}
+      hostname: ${DOCKER_HOST_NAME_LOCAL_DB}
+      container_name: ${DOCKER_CONTAINER_NAME_LOCAL_DB}
+      volumes:
+        - database:/var/lib/mysql
+      expose:
+        - 3306
+      environment:
+        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD_LOCAL}
+        - MYSQL_DATABASE=${MYSQL_DB_NAME_LOCAL}
+        - MYSQL_USER=${MYSQL_USER_LOCAL}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD_LOCAL}
+      networks:
+        - backend
+
+    songify-phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      environment:
+        PMA_ARBITRARY: 1
+        PMA_HOSTS: ${MYSQL_HOST_LOCAL}
+        PMA_USER: ${MYSQL_USER_LOCAL}
+        PMA_PASSWORD: ${MYSQL_PASSWORD_LOCAL}
+        TZ: ${TIMEZONE_LOCAL}
+      expose:
+        - 80
+      ports:
+        - "8083:80"
+      networks:
+        - backend
