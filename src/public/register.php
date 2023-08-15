@@ -18,7 +18,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Welcome to Slotify!</title>
+    <title>Welcome to Songify!</title>
 
     <link rel="stylesheet" href="assets/css/style.css">
 
