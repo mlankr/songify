@@ -8,6 +8,19 @@ on:
     branches:
       - main
 
+env:
+  REGISTRY: ${{ secrets.REGISTRY }}
+  DOCKER_CONTAINER_WEB: ${{ secrets.DOCKER_CONTAINER_WEB }}
+  ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+  MYSQL_VERSION: ${{ secrets.MYSQL_VERSION }}
+  DOCKER_CONTAINER_DB: ${{ secrets.DOCKER_CONTAINER_DB }}
+  DB_NAME: ${{ secrets.DB_NAME }}
+  DB_PASSWORD_ROOT: ${{ secrets.DB_PASSWORD_ROOT }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  DOCKER_CONTAINER_PA: ${{ secrets.DOCKER_CONTAINER_PA }}
+  TIMEZONE_LOCAL: ${{ secrets.TIMEZONE_LOCAL }}
+
 jobs:
   build:
     name: Build and Push Images
@@ -24,7 +37,7 @@ jobs:
           docker-compose build
           
           # Log in to the Azure Container Registry
-          docker login ${{ secrets.REGISTRY }} -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }}
+          docker login ${{ secrets.ACR_REGISTRY }} -u ${{ secrets.ACR_REGISTRY_USERNAME }} -p ${{ secrets.ACR_REGISTRY_PASSWORD }}
 
           # Push all images to the Azure Container Registry
           docker-compose push
