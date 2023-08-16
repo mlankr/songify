@@ -24,7 +24,7 @@ jobs:
           docker-compose build
           
           # Log in to the Azure Container Registry
-          docker login ${{ secrets.REGISTRY }} -u ${{ secrets.REGISTRY_NAME }} -p ${{ secrets.REGISTRY_PASSWORD }}
+          docker login ${{ secrets.REGISTRY }} -u ${{ secrets.REGISTRY_USERNAME }} -p ${{ secrets.REGISTRY_PASSWORD }}
 
           # Push all images to the Azure Container Registry
           docker-compose push
