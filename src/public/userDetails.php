@@ -12,7 +12,7 @@
         <button class="button button-green blockButton saveEmailButton">SAVE</button>
     </div>
 
-    <div class="container borderBottom">
+    <div class="container borderBottom passwordsInputContainer">
         <h2 class="alignCenter">PASSWORD</h2>
         <label for="oldPassword"></label>
         <input type="password" id="oldPassword" class="oldPassword" name="oldPassword"

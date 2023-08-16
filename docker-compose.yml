@@ -8,46 +8,51 @@ volumes:
 
 services:
     songify-web:
+      image: ${REGISTRY}/songify-web
       build:
         context: .
         dockerfile: Dockerfile
-      hostname: ${DOCKER_HOST_NAME_LOCAL_WEB}
-      container_name: ${DOCKER_CONTAINER_NAME_LOCAL_WEB}
+      hostname: ${DOCKER_CONTAINER_WEB}
+      container_name: ${DOCKER_CONTAINER_WEB}
       expose:
         - 80
+      environment:
+        - ${ENVIRONMENT}
       ports:
         - "80:80"
       volumes:
         - ./src/public:/var/www/html
         - ./.bash_history:/root/.bash_history
-      environment:
-        - ENVIRONMENT=${ENVIRONMENT}
+      depends_on:
+        - songify-mysql
+        - songify-phpmyadmin
       networks:
         - backend
 
     songify-mysql:
-      image: mysql:${MYSQL_VERSION}
-      hostname: ${DOCKER_HOST_NAME_LOCAL_DB}
-      container_name: ${DOCKER_CONTAINER_NAME_LOCAL_DB}
+      image: ${REGISTRY}/mysql:${MYSQL_VERSION}
+      hostname: ${DOCKER_CONTAINER_DB}
+      container_name: ${DOCKER_CONTAINER_DB}
       volumes:
         - database:/var/lib/mysql
       expose:
         - 3306
       environment:
-        - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD_LOCAL}
-        - MYSQL_DATABASE=${MYSQL_DB_NAME_LOCAL}
-        - MYSQL_USER=${MYSQL_USER_LOCAL}
-        - MYSQL_PASSWORD=${MYSQL_PASSWORD_LOCAL}
+        - MYSQL_DATABASE=${DB_NAME}
+        - MYSQL_ROOT_PASSWORD=${DB_PASSWORD_ROOT}
+        - MYSQL_USER=${DB_USERNAME}
+        - MYSQL_PASSWORD=${DB_PASSWORD}
       networks:
         - backend
 
     songify-phpmyadmin:
-      image: phpmyadmin/phpmyadmin
+      image: ${REGISTRY}/phpmyadmin
+      container_name: ${DOCKER_CONTAINER_PA}
       environment:
         PMA_ARBITRARY: 1
-        PMA_HOSTS: ${MYSQL_HOST_LOCAL}
-        PMA_USER: ${MYSQL_USER_LOCAL}
-        PMA_PASSWORD: ${MYSQL_PASSWORD_LOCAL}
+        PMA_HOSTS: ${DOCKER_CONTAINER_DB}
+        PMA_USER: ${DB_USERNAME}
+        PMA_PASSWORD: ${DB_PASSWORD}
         TZ: ${TIMEZONE_LOCAL}
       expose:
         - 80

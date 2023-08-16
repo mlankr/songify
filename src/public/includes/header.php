@@ -20,7 +20,6 @@
 <html lang="en">
 <head>
     <title>Welcome to Songify!</title>
-    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 
     <script src="assets/js/libs/jquery-3.6.0.min.js"></script>

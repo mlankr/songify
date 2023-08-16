@@ -200,13 +200,18 @@ html, body {
   display: table;
   height: 100%;
   width: 100%;
+  position: relative;
+  min-height: 100vh;
 }
 
 #loginContainer {
   width: 80%;
   margin: 0 auto;
-  position: relative;
+  position: absolute;
   max-width: 1024px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 #loginContainer * {
   color: #fff;
@@ -214,6 +219,14 @@ html, body {
   font-weight: normal;
   line-height: 1em;
   box-sizing: border-box;
+}
+#loginContainer .loginHeading {
+  margin-bottom: 50px;
+}
+#loginContainer .requiredText {
+  color: rgba(250, 49, 49, 0.85);
+  font-size: 20px;
+  padding: 2px;
 }
 
 /* Chrome/Opera/Safari */
@@ -321,8 +334,19 @@ html, body {
   padding: 5px 30px;
   background: url("../images/icons/checkmark.png") no-repeat;
 }
-#loginText .errorMessage {
-  color: rgba(250, 49, 49, 0.85);
+
+#copyrightContainer {
+  position: absolute;
+  bottom: 0;
+  /* Align at the bottom */
+  width: 100%;
+  /* Occupy full width of the parent */
+  text-align: center;
+  /* Center the text horizontally */
+}
+
+#errorMessage {
+  color: #FF6600;
   font-size: 12px;
   display: block;
 }
@@ -551,6 +575,7 @@ body {
   position: absolute;
   right: 0;
   top: 6px;
+  vertical-align: middle;
   width: 25px;
 }
 
@@ -710,6 +735,9 @@ body {
   font-size: 18px;
   font-weight: 300;
   padding: 0 20px;
+}
+.userDetails .container.passwordsInputContainer {
+  margin-bottom: 150px;
 }
 .userDetails .container .message {
   font-weight: 200;
