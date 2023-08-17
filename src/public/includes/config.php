@@ -13,8 +13,7 @@ $timezone = date_default_timezone_set("EUROPE/BERLIN");
 
 try {
 //    $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
-//    $pdo = new PDO('mysql:host=songify-mysql;dbname=songify', 'songify', 'songify33');
-    $pdo = new PDO('mysql:host=milans-songify-webapp-server.mysql.database.azure.com;dbname=milans-songify-webapp-database', 'mjnltdqzww', 'RZM270OCI0A5145P$');
+    $pdo = new PDO('mysql:host=20.8.142.3;dbname=songify', 'songify', 'songify33');
 } catch (PDOException $err) {
     echo "Database connection failed. " . $err->getMessage();
     exit();

@@ -3,6 +3,7 @@ html, body {
   margin: 0;
   height: 100%;
   list-style-type: none;
+  min-width: 992px;
 }
 
 * {
@@ -390,9 +391,12 @@ html, body {
 .playListContainer {
   padding: 10px 0;
 }
+.playListContainer .gridViewContainer {
+  margin-bottom: 150px;
+}
 .playListContainer .gridViewContainer .buttonItems .playlistButton {
   display: block;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 20px;
 }
 .playlistImage {
   border: 3px solid #282828;

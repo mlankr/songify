@@ -12,6 +12,16 @@
             return;
         }
 
+        $playlistExistCheck = "SELECT name FROM playlists WHERE name='$playlistName' AND owner='$username'";
+        $playlistExistCheckPrepareQuery = $pdo->prepare($playlistExistCheck);
+        $playlistExistCheckPrepareQuery->execute();
+        $playlistAlreadyExists = $playlistExistCheckPrepareQuery->rowCount() > 0;
+
+        if($playlistAlreadyExists) {
+            echo json_encode(array('error' => 'Playlist already exists'));
+            return;
+        }
+
         $playlistQuery = "INSERT INTO playlists(name, owner, dateCreated) VALUES(?,?,?)";
         $playlistPrepareQuery = $pdo->prepare($playlistQuery);
         if ($playlistPrepareQuery->execute(array($playlistName, $username, $date))) {
