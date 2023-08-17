@@ -22,10 +22,11 @@ env:
   DOCKER_CONTAINER_PA: ${{ secrets.DOCKER_CONTAINER_PA }}
   TIMEZONE_LOCAL: ${{ secrets.TIMEZONE_LOCAL }}
   IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+  WEBAPP_STORAGE_HOME: ${{ secrets.WEBAPP_STORAGE_HOME }}
 
 jobs:
   build:
-    name: Build and Push Images
+    name: Build and Push Image
     runs-on: 'ubuntu-latest'
 
     steps:
@@ -38,7 +39,7 @@ jobs:
       - name: Build Docker Image
         run: docker-compose build           # Build the main application image using docker-compose
 
-      - name: Push Docker image to ACR
+      - name: Push Docker Image to ACR
         run: |
           
           # Tag the image

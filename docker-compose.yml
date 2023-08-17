@@ -21,8 +21,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./src/public:/var/www/html
-      - ./.bash_history:/root/.bash_history
+      - ${WEBAPP_STORAGE_HOME}/src/public:/var/www/html
+      - ${WEBAPP_STORAGE_HOME}/.bash_history:/root/.bash_history
     depends_on:
       - songify-mysql
       - songify-phpmyadmin
@@ -35,7 +35,7 @@ services:
     container_name: ${DOCKER_CONTAINER_DB}
     volumes:
       - database:/var/lib/mysql
-      - ./db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
+      - ${WEBAPP_STORAGE_HOME}/db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
     expose:
       - 3306
     environment:
