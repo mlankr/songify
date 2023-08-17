@@ -23,8 +23,8 @@ services:
     volumes:
       - ${WEBAPP_STORAGE_HOME}/src/public:/var/www/html
     depends_on:
-      - mysql
-      - phpmyadmin
+      - songify-mysql
+      - songify-phpmyadmin
     networks:
       - backend
 
