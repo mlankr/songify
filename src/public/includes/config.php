@@ -13,6 +13,8 @@ $timezone = date_default_timezone_set("EUROPE/BERLIN");
 
 try {
 //    $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
+
+    // TODO: Only for deployment tests and should be changed!
     $pdo = new PDO('mysql:host=20.8.142.3;dbname=songify', 'songify', 'songify33');
 } catch (PDOException $err) {
     echo "Database connection failed. " . $err->getMessage();

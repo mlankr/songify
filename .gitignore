@@ -2,7 +2,7 @@
 .DS_Store
 
 # environment file
-.env
+*.env*
 
 # Optional npm cache directory
 .npm

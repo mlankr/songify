@@ -47,3 +47,6 @@ jobs:
 
           # Push the image
           docker push ${{ env.ACR_REGISTRY }}${{ env.IMAGE_NAME }}
+          
+          # Logout from ACR
+          docker logout ${{ env.ACR_REGISTRY }}
