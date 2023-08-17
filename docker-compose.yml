@@ -34,8 +34,8 @@ services:
     hostname: ${DOCKER_CONTAINER_DB}
     container_name: ${DOCKER_CONTAINER_DB}
     volumes:
-      - database:/var/lib/mysql
       - ${WEBAPP_STORAGE_HOME}/db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
+      - database:/var/lib/mysql
     expose:
       - 3306
     environment:
