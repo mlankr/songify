@@ -22,7 +22,6 @@ services:
       - "80:80"
     volumes:
       - ${WEBAPP_STORAGE_HOME}/src/public:/var/www/html
-      - ${WEBAPP_STORAGE_HOME}/.bash_history:/root/.bash_history
     depends_on:
       - songify-mysql
       - songify-phpmyadmin
