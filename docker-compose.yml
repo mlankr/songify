@@ -8,7 +8,7 @@ volumes:
 
 services:
   songify-web:
-    image: ${ACR_REGISTRY_TEMP}songify-web
+    image: ${ACR_REGISTRY}/songify-web
     build:
       context: .
       dockerfile: Dockerfile
@@ -29,7 +29,7 @@ services:
       - backend
 
   songify-mysql:
-    image: ${REGISTRY}mysql:${MYSQL_VERSION}
+    image: ${ACR_REGISTRY}/mysql:${MYSQL_VERSION}
     hostname: ${DOCKER_CONTAINER_DB}
     container_name: ${DOCKER_CONTAINER_DB}
     volumes:
@@ -46,7 +46,7 @@ services:
       - backend
 
   songify-phpmyadmin:
-    image: ${REGISTRY}phpmyadmin
+    image: ${ACR_REGISTRY}/phpmyadmin
     container_name: ${DOCKER_CONTAINER_PA}
     environment:
       PMA_ARBITRARY: 1

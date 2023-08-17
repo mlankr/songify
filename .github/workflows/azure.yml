@@ -1,49 +1,49 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy container app to Azure Web App
-
-on:
-  push:
-    branches:
-      - main
-
-env:
-  REGISTRY: ${{ secrets.REGISTRY }}
-  ACR_REGISTRY: ${{ secrets.ACR_REGISTRY }}
-  DOCKER_CONTAINER_WEB: ${{ secrets.DOCKER_CONTAINER_WEB }}
-  ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
-  MYSQL_VERSION: ${{ secrets.MYSQL_VERSION }}
-  DOCKER_CONTAINER_DB: ${{ secrets.DOCKER_CONTAINER_DB }}
-  DB_NAME: ${{ secrets.DB_NAME }}
-  DB_PASSWORD_ROOT: ${{ secrets.DB_PASSWORD_ROOT }}
-  DB_USERNAME: ${{ secrets.DB_USERNAME }}
-  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-  DOCKER_CONTAINER_PA: ${{ secrets.DOCKER_CONTAINER_PA }}
-  TIMEZONE_LOCAL: ${{ secrets.TIMEZONE_LOCAL }}
-  IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-  WEBAPP_STORAGE_HOME: ${{ secrets.WEBAPP_STORAGE_HOME }}
-
-jobs:
-  build:
-    name: Build and Push Image
-    runs-on: 'ubuntu-latest'
-
-    steps:
-      - name: Checkout main branch from GitHub
-        uses: actions/checkout@v2
-
-      - name: Log in to the Azure Container Registry
-        run: docker login ${{ env.ACR_REGISTRY }} -u ${{ secrets.ACR_REGISTRY_USERNAME }} -p ${{ secrets.ACR_REGISTRY_PASSWORD }}
-
-      - name: Build Docker Image
-        run: docker-compose build           # Build the main application image using docker-compose
-
-      - name: Push Docker Image to ACR
-        run: |
-          
-          # Tag the image
-          docker tag ${{ env.IMAGE_NAME }} ${{ env.ACR_REGISTRY }}${{ env.IMAGE_NAME }}
-          
-          # Push the image
-          docker push ${{ env.ACR_REGISTRY }}${{ env.IMAGE_NAME }}
+## Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+## More GitHub Actions for Azure: https://github.com/Azure/actions
+#
+#name: Build and deploy container app to Azure Web App
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#
+#env:
+#  REGISTRY: ${{ secrets.REGISTRY }}
+#  ACR_REGISTRY: ${{ secrets.ACR_REGISTRY }}
+#  DOCKER_CONTAINER_WEB: ${{ secrets.DOCKER_CONTAINER_WEB }}
+#  ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
+#  MYSQL_VERSION: ${{ secrets.MYSQL_VERSION }}
+#  DOCKER_CONTAINER_DB: ${{ secrets.DOCKER_CONTAINER_DB }}
+#  DB_NAME: ${{ secrets.DB_NAME }}
+#  DB_PASSWORD_ROOT: ${{ secrets.DB_PASSWORD_ROOT }}
+#  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+#  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+#  DOCKER_CONTAINER_PA: ${{ secrets.DOCKER_CONTAINER_PA }}
+#  TIMEZONE_LOCAL: ${{ secrets.TIMEZONE_LOCAL }}
+#  IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+#  WEBAPP_STORAGE_HOME: ${{ secrets.WEBAPP_STORAGE_HOME }}
+#
+#jobs:
+#  build:
+#    name: Build and Push Image
+#    runs-on: 'ubuntu-latest'
+#
+#    steps:
+#      - name: Checkout main branch from GitHub
+#        uses: actions/checkout@v2
+#
+#      - name: Log in to the Azure Container Registry
+#        run: docker login ${{ env.ACR_REGISTRY }} -u ${{ secrets.ACR_REGISTRY_USERNAME }} -p ${{ secrets.ACR_REGISTRY_PASSWORD }}
+#
+#      - name: Build Docker Image
+#        run: docker-compose build           # Build the main application image using docker-compose
+#
+#      - name: Push Docker Image to ACR
+#        run: |
+#
+#          # Tag the image
+#          docker tag ${{ env.IMAGE_NAME }} ${{ env.ACR_REGISTRY }}${{ env.IMAGE_NAME }}
+#
+#          # Push the image
+#          docker push ${{ env.ACR_REGISTRY }}${{ env.IMAGE_NAME }}
