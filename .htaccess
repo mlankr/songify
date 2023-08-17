@@ -1,0 +1,3 @@
+<Files ~ "\.(php|php5|py|jsp|cgi|sh)$">
+    Require all denied
+</Files>
