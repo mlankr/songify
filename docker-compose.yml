@@ -7,8 +7,8 @@ volumes:
   database: {}
 
 services:
-  web:
-    image: web
+  songify-web:
+    image: songify-web
     build:
       context: .
       dockerfile: Dockerfile
@@ -21,19 +21,19 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./src/public:/var/www/html
+      - ${WEBAPP_STORAGE_HOME}/src/public:/var/www/html
     depends_on:
       - mysql
       - phpmyadmin
     networks:
       - backend
 
-  mysql:
+  songify-mysql:
     image: mysql:${MYSQL_VERSION}
     hostname: ${DOCKER_CONTAINER_DB}
     container_name: ${DOCKER_CONTAINER_DB}
     volumes:
-      - ./db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
+      - ${WEBAPP_STORAGE_HOME}/db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
       - database:/var/lib/mysql
     expose:
       - 3306
@@ -45,7 +45,7 @@ services:
     networks:
       - backend
 
-  phpmyadmin:
+  songify-phpmyadmin:
     image: phpmyadmin
     container_name: ${DOCKER_CONTAINER_PA}
     environment:
