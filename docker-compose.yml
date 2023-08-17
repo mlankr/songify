@@ -8,7 +8,7 @@ volumes:
 
 services:
   songify-web:
-    image: ${ACR_REGISTRY}songify-web
+    image: ${ACR_REGISTRY_TEMP}songify-web
     build:
       context: .
       dockerfile: Dockerfile
