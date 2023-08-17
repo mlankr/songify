@@ -9,7 +9,7 @@
         include_once("includes/classes/Song.php");
         include_once("includes/classes/Playlist.php");
 
-        if (isset($_GET['userLoggedIn'])) {
+        if (isset($_SESSION['userLoggedIn'])) {
             $userLoggedIn = new User($pdo, $_GET['userLoggedIn']);
         } else {
             echo "Currently not logged in! Please try again later";

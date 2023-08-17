@@ -10,6 +10,7 @@ on:
 
 env:
   REGISTRY: ${{ secrets.REGISTRY }}
+  ACR_REGISTRY: ${{ secrets.ACR_REGISTRY }}
   DOCKER_CONTAINER_WEB: ${{ secrets.DOCKER_CONTAINER_WEB }}
   ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
   MYSQL_VERSION: ${{ secrets.MYSQL_VERSION }}
@@ -20,6 +21,7 @@ env:
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
   DOCKER_CONTAINER_PA: ${{ secrets.DOCKER_CONTAINER_PA }}
   TIMEZONE_LOCAL: ${{ secrets.TIMEZONE_LOCAL }}
+  IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
 
 jobs:
   build:
@@ -30,14 +32,17 @@ jobs:
       - name: Checkout main branch from GitHub
         uses: actions/checkout@v2
 
-      - name: Build and Push Docker Images
+      - name: Log in to the Azure Container Registry
+        run: docker login ${{ env.ACR_REGISTRY }} -u ${{ secrets.ACR_REGISTRY_USERNAME }} -p ${{ secrets.ACR_REGISTRY_PASSWORD }}
+
+      - name: Build Docker Image
+        run: docker-compose build           # Build the main application image using docker-compose
+
+      - name: Push Docker image to ACR
         run: |
           
-          # Build the main application image using Docker Compose
-          docker-compose build
+          # Tag the image
+          docker tag ${{ env.IMAGE_NAME }}:latest ${{ env.ACR_REGISTRY }}${{ env.IMAGE_NAME }}:${{ github.sha }}
           
-          # Log in to the Azure Container Registry
-          docker login ${{ secrets.ACR_REGISTRY }} -u ${{ secrets.ACR_REGISTRY_USERNAME }} -p ${{ secrets.ACR_REGISTRY_PASSWORD }}
-
-          # Push all images to the Azure Container Registry
-          docker-compose push
+          # Push the image
+          docker push ${{ env.ACR_REGISTRY }}${{ env.IMAGE_NAME }}:${{ github.sha }}
