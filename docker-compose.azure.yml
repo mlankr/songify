@@ -4,39 +4,35 @@ networks:
   backend:
 
 volumes:
-  database: {}
+  db-data:
 
 services:
-  web:
-    image: web
+  songify-web:
+    image: ${ACR_REGISTRY}songify-web
     build:
       context: .
       dockerfile: Dockerfile
     hostname: ${DOCKER_CONTAINER_WEB}
     container_name: ${DOCKER_CONTAINER_WEB}
-    expose:
-      - 80
-    environment:
-      - ${ENVIRONMENT}
+    volumes:
+      - ${WEBAPP_STORAGE_HOME}/src/public:/var/www/html
+    restart: always
     ports:
       - "80:80"
-    volumes:
-      - ./src/public:/var/www/html
     depends_on:
-      - mysql
-      - phpmyadmin
+      - songify-mysql
+      - songify-phpmyadmin
     networks:
       - backend
 
-  mysql:
-    image: mysql:${MYSQL_VERSION}
+  songify-mysql:
+    image: ${ACR_REGISTRY}mysql:${MYSQL_VERSION}
     hostname: ${DOCKER_CONTAINER_DB}
     container_name: ${DOCKER_CONTAINER_DB}
     volumes:
-      - ./db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
-      - database:/var/lib/mysql
-    expose:
-      - 3306
+      - ${WEBAPP_STORAGE_HOME}/db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
+      - db-data:/var/lib/mysql
+    restart: always
     environment:
       - MYSQL_DATABASE=${DB_NAME}
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD_ROOT}
@@ -45,17 +41,15 @@ services:
     networks:
       - backend
 
-  phpmyadmin:
-    image: phpmyadmin
+  songify-phpmyadmin:
+    image: ${ACR_REGISTRY}phpmyadmin
     container_name: ${DOCKER_CONTAINER_PA}
     environment:
       PMA_ARBITRARY: 1
       PMA_HOSTS: ${DOCKER_CONTAINER_DB}
       PMA_USER: ${DB_USERNAME}
       PMA_PASSWORD: ${DB_PASSWORD}
-      TZ: ${TIMEZONE_LOCAL}
-    expose:
-      - 80
+    restart: always
     ports:
       - "8083:80"
     networks:
