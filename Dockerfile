@@ -5,8 +5,8 @@ RUN apt-get update \
 && docker-php-ext-install mysqli && docker-php-ext-enable mysqli \
 && docker-php-ext-install zip pdo_mysql
 
-ADD ./config/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY config/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY ssl /var/www/ssl/
+COPY src/public /var/www/html/
 
-COPY ./src/public /var/www/html/
-
-WORKDIR /var/www/html
+WORKDIR /var/www/html/
