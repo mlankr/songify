@@ -2,20 +2,14 @@
 ob_start();
 session_start();
 
-/* TODO: Fetch env variables*/
-//$timezone = date_default_timezone_set(getenv('TIMEZONE_LOCAL'));
-//$dbHost = getenv('DOCKER_CONTAINER_DB');
-//$dbName = getenv('DB_NAME');
-//$dbUser = getenv('DB_USERNAME');
-//$dbPassword = getenv('DB_PASSWORD');
-
-$timezone = date_default_timezone_set("EUROPE/BERLIN");
+$timezone = date_default_timezone_set(getenv('TIMEZONE'));
+$dbHost = getenv('DB_HOST');
+$dbName = getenv('DB_NAME');
+$dbUser = getenv('DB_USER');
+$dbPassword = getenv('DB_PASSWORD');
 
 try {
-//    $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
-
-    // TODO: Only for deployment tests and should be changed!
-    $pdo = new PDO('mysql:host=20.8.142.3;dbname=songify', 'songify', 'songify33');
+    $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword);
 } catch (PDOException $err) {
     echo "Database connection failed. " . $err->getMessage();
     exit();

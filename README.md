@@ -18,8 +18,6 @@ Welcome to the Spotify Clone project! This project aims to replicate some of the
 
 - **Play Music:** Play, pause, skip, and control the volume of the currently playing track.
 
-- **Discover:** Discover new music based on your listening history and preferences.
-
 ## Tech Stack
 
 * [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML/) - HyperText Markup Language

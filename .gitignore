@@ -2,7 +2,10 @@
 .DS_Store
 
 # environment file
+*.env
+# Ignore all .env files except .env.example
 *.env*
+!.env.example
 
 # Optional npm cache directory
 .npm

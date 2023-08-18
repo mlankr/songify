@@ -12,16 +12,23 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - environment=${ENVIRONMENT}
     hostname: ${DOCKER_CONTAINER_WEB}
     container_name: ${DOCKER_CONTAINER_WEB}
     expose:
       - 80
     environment:
-      - ${ENVIRONMENT}
+      - ENVIRONMENT=${ENVIRONMENT}
+      - DB_HOST=${DOCKER_CONTAINER_DB}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - TIMEZONE=${TIMEZONE}
     ports:
       - "80:80"
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/src/public:/var/www/html
+      - ./src/public:/var/www/html
     depends_on:
       - songify-mysql
       - songify-phpmyadmin
@@ -29,11 +36,11 @@ services:
       - backend
 
   songify-mysql:
-    image: mysql:${MYSQL_VERSION}
+    image: mysql:5.7
     hostname: ${DOCKER_CONTAINER_DB}
     container_name: ${DOCKER_CONTAINER_DB}
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
+      - ./db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
       - database:/var/lib/mysql
     expose:
       - 3306
@@ -53,7 +60,7 @@ services:
       PMA_HOSTS: ${DOCKER_CONTAINER_DB}
       PMA_USER: ${DB_USERNAME}
       PMA_PASSWORD: ${DB_PASSWORD}
-      TZ: ${TIMEZONE_LOCAL}
+      TZ: ${TIMEZONE}
     expose:
       - 80
     ports:
