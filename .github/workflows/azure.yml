@@ -11,18 +11,16 @@ on:
 env:
   REGISTRY: ${{ secrets.REGISTRY }}
   ACR_REGISTRY: ${{ secrets.ACR_REGISTRY }}
+  DOCKER_CONTAINER_DB: ${{ secrets.DOCKER_CONTAINER_DB }}
+  DOCKER_CONTAINER_PA: ${{ secrets.DOCKER_CONTAINER_PA }}
   DOCKER_CONTAINER_WEB: ${{ secrets.DOCKER_CONTAINER_WEB }}
   ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
-  MYSQL_VERSION: ${{ secrets.MYSQL_VERSION }}
-  DOCKER_CONTAINER_DB: ${{ secrets.DOCKER_CONTAINER_DB }}
   DB_NAME: ${{ secrets.DB_NAME }}
-  DB_PASSWORD_ROOT: ${{ secrets.DB_PASSWORD_ROOT }}
   DB_USERNAME: ${{ secrets.DB_USERNAME }}
   DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-  DOCKER_CONTAINER_PA: ${{ secrets.DOCKER_CONTAINER_PA }}
-  TIMEZONE_LOCAL: ${{ secrets.TIMEZONE_LOCAL }}
+  DB_PASSWORD_ROOT: ${{ secrets.DB_PASSWORD_ROOT }}
   IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
-  WEBAPP_STORAGE_HOME: ${{ secrets.WEBAPP_STORAGE_HOME }}
+  TIMEZONE: ${{ secrets.TIMEZONE_LOCAL }}
 
 jobs:
   build:
@@ -34,7 +32,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Log in to the Azure Container Registry
-        run:  echo ${{ env.ACR_REGISTRY_PASSWORD }} | docker login ${{ env.ACR_REGISTRY }} --username ${{ secrets.ACR_REGISTRY_USERNAME }} --password-stdin
+        run:  echo ${{ secrets.ACR_REGISTRY_PASSWORD }} | docker login ${{ env.ACR_REGISTRY }} --username ${{ secrets.ACR_REGISTRY_USERNAME }} --password-stdin
 
       - name: Build Docker Image
         run: docker-compose build           # Build the main application image using docker-compose
