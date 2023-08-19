@@ -9,7 +9,6 @@ on:
       - main
 
 env:
-  REGISTRY: ${{ secrets.REGISTRY }}
   ACR_REGISTRY: ${{ secrets.ACR_REGISTRY }}
   DOCKER_CONTAINER_DB: ${{ secrets.DOCKER_CONTAINER_DB }}
   DOCKER_CONTAINER_PA: ${{ secrets.DOCKER_CONTAINER_PA }}
