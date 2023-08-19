@@ -8,6 +8,7 @@
         'browse': '.navItemLink.browse',
         'yourMusic': '.navItemLink.yourMusic',
         'profile': '.navItemLink.profile',
+        'disclaimer': '.navItemLink.disclaimer',
         'search': '.navItemLink.search'
     };
 
@@ -43,6 +44,10 @@
         openPage('settings.php');
     }
 
+    me.openDisclaimerPage = function () {
+        openPage('disclaimer.php');
+    }
+
     me.openSearchPage = function () {
         openPage('search.php');
     }
@@ -52,6 +57,7 @@
         $(me.selectors.browse).on('click', me.openBrowsePage);
         $(me.selectors.yourMusic).on('click', me.openYourMusicPage);
         $(me.selectors.profile).on('click', me.openProfilePage);
+        $(me.selectors.disclaimer).on('click', me.openDisclaimerPage);
         $(me.selectors.search).on('click', me.openSearchPage);
     }
 

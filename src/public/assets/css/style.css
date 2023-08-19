@@ -4,6 +4,10 @@ html, body {
   height: 100%;
   list-style-type: none;
   min-width: 992px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 * {
@@ -64,7 +68,7 @@ html, body {
 }
 
 .entityInfo {
-  padding: 40px 0 10px 0;
+  padding: 20px 0 10px 0;
   display: inline-block;
   width: 100%;
 }
@@ -401,6 +405,17 @@ html, body {
 .playlistImage {
   border: 3px solid #282828;
   padding: 10px;
+}
+
+.disclaimerContainer {
+  padding: 10px 20px 10px;
+}
+.disclaimerContainer .disclaimerHeading {
+  margin: 10px 0 10px;
+}
+.disclaimerContainer .disclaimer {
+  font-size: 18px;
+  font-style: italic;
 }
 
 body {
