@@ -13,8 +13,8 @@
 <script src="assets/js/playlist.js"></script>
 <script src="assets/js/modal.js"></script>
 <script src="assets/js/settings.js"></script>
-<script src="assets/js/disclaimer.js"></script>
 <script src="assets/js/userDetails.js"></script>
 <script src="assets/js/script.js"></script>
+<script src="assets/js/disclaimer.js"></script>
 </body>
 </html>

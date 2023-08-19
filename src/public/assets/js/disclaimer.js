@@ -8,12 +8,11 @@
 	};
 
 	me.showDisclaimer = function () {
-		openPage("disclaimer.php?");
+		openPage("disclaimer.php");
 	}
 
 	me.eventListeners = function () {
 		$(me.selectors.mainContent).on('click', me.selectors.disclaimer, me.showDisclaimer);
-
 	}
 
 	me.init = function () {

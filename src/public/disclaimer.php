@@ -1,6 +1,6 @@
 <?php
-include_once("includes/includedFiles.php");
 include_once("includes/classes/Constants.php");
+include_once("includes/includedFiles.php");
 ?>
 
 <div class="disclaimerContainer">
