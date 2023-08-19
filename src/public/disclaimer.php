@@ -5,5 +5,5 @@ include_once("includes/includedFiles.php");
 
 <div class="disclaimerContainer">
 	<h1 class="pageHeadingBig disclaimerHeading">Copyright Disclaimer</h1>
-	<p class="disclaimer"><?php echo Constants::$disclaimerText; ?></p>
+    <?php echo "<p class='disclaimer'>" . Constants::$disclaimerText . "</p>"; ?>
 </div>
