@@ -1,64 +1,23 @@
+# Specific for azure
+
 version: '3.5' # specify docker-compose version
 
-networks:
-  backend:
-
-volumes:
-  db-data:
-
 services:
-  songify-web:
-    env_file:
-      - .env.acr
-    image: ${ACR_REGISTRY}songify-web
+  songifyweb:
+    image: ${IMAGE_WEB:-web}
     build:
       context: .
       dockerfile: Dockerfile
-    hostname: ${DOCKER_CONTAINER_WEB}
-    container_name: ${DOCKER_CONTAINER_WEB}
-    volumes:
-      - ${WEBAPP_STORAGE_HOME}/src/public:/var/www/html
-    restart: always
+    hostname: ${CONTAINER_WEB:-web}
+    container_name: ${CONTAINER_WEB:-web}
     ports:
       - "80:80"
     environment:
-      - ENVIRONMENT=${ENVIRONMENT}
-      - DB_HOST=${DOCKER_CONTAINER_DB}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USERNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-    depends_on:
-      - songify-mysql
-      - songify-phpmyadmin
-    networks:
-      - backend
-
-  songify-mysql:
-    image: ${ACR_REGISTRY}mysql:5.7
-    hostname: ${DOCKER_CONTAINER_DB}
-    container_name: ${DOCKER_CONTAINER_DB}
+      - ENVIRONMENT=${ENVIRONMENT:-production}
+      - DB_HOST=${DB_HOST:-mysqlServer}
+      - DB_NAME=${DB_NAME:-dummyDB}
+      - DB_USERNAME=${DB_USERNAME:-foo}
+      - DB_PASSWORD=${DB_PASSWORD:-bar}
+      - TIMEZONE=${TIMEZONE:-UTC}
     volumes:
-      - ${WEBAPP_STORAGE_HOME}/db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
-      - db-data:/var/lib/mysql
-    restart: always
-    environment:
-      - MYSQL_DATABASE=${DB_NAME}
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD_ROOT}
-      - MYSQL_USER=${DB_USERNAME}
-      - MYSQL_PASSWORD=${DB_PASSWORD}
-    networks:
-      - backend
-
-  songify-phpmyadmin:
-    image: ${ACR_REGISTRY}phpmyadmin
-    container_name: ${DOCKER_CONTAINER_PA}
-    environment:
-      PMA_ARBITRARY: 1
-      PMA_HOSTS: ${DOCKER_CONTAINER_DB}
-      PMA_USER: ${DB_USERNAME}
-      PMA_PASSWORD: ${DB_PASSWORD}
-    restart: always
-    ports:
-      - "8083:80"
-    networks:
-      - backend
+      - ./src/public:/var/www/html

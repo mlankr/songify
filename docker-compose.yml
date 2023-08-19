@@ -7,57 +7,57 @@ volumes:
   database: {}
 
 services:
-  songify-web:
-    image: songify-web
+  songifyweb:
+    image: ${IMAGE_WEB}
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        - environment=${ENVIRONMENT}
-    hostname: ${DOCKER_CONTAINER_WEB}
-    container_name: ${DOCKER_CONTAINER_WEB}
+    hostname: ${CONTAINER_WEB}
+    container_name: ${CONTAINER_WEB}
     expose:
       - 80
     environment:
       - ENVIRONMENT=${ENVIRONMENT}
-      - DB_HOST=${DOCKER_CONTAINER_DB}
+      - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USERNAME}
+      - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PASSWORD_ROOT=${DB_PASSWORD_ROOT}
       - TIMEZONE=${TIMEZONE}
     ports:
       - "80:80"
     volumes:
       - ./src/public:/var/www/html
     depends_on:
-      - songify-mysql
-      - songify-phpmyadmin
+      - mysql
+      - phpmyadmin
     networks:
       - backend
 
-  songify-mysql:
+  mysql:
     image: mysql:5.7
-    hostname: ${DOCKER_CONTAINER_DB}
-    container_name: ${DOCKER_CONTAINER_DB}
+    hostname: ${CONTAINER_DB}
+    container_name: ${CONTAINER_DB}
     volumes:
       - ./db/seedDB/songify.sql:/docker-entrypoint-initdb.d/songify.sql
       - database:/var/lib/mysql
     expose:
       - 3306
     environment:
+      - MYSQL_HOST=${DB_HOST}
       - MYSQL_DATABASE=${DB_NAME}
-      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD_ROOT}
       - MYSQL_USER=${DB_USERNAME}
       - MYSQL_PASSWORD=${DB_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD_ROOT}
     networks:
       - backend
 
-  songify-phpmyadmin:
+  phpmyadmin:
     image: phpmyadmin
-    container_name: ${DOCKER_CONTAINER_PA}
+    container_name: ${CONTAINER_PA}
     environment:
       PMA_ARBITRARY: 1
-      PMA_HOSTS: ${DOCKER_CONTAINER_DB}
+      PMA_HOSTS: ${DB_HOST}
       PMA_USER: ${DB_USERNAME}
       PMA_PASSWORD: ${DB_PASSWORD}
       TZ: ${TIMEZONE}
