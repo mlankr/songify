@@ -34,7 +34,8 @@ modules.xml
 
 .bash_history
 xdebug/
-src/public/assets/scss/
+src/public/assets/scss/*
+**/scss/**
 
 # pull script dump
 db/

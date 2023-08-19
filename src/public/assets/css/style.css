@@ -729,13 +729,13 @@ body {
   margin: 30px auto;
 }
 
-.disclaimerContainer {
+#usageTextContent {
   padding: 10px 20px 10px;
 }
-.disclaimerContainer .disclaimerHeading {
+#usageTextContent .usageTextHeading {
   margin: 10px 0 10px;
 }
-.disclaimerContainer .disclaimer {
+#usageTextContent .usageText {
   font-size: 18px;
   font-style: italic;
 }

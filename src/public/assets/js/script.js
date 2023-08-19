@@ -8,7 +8,7 @@
         'browse': '.navItemLink.browse',
         'yourMusic': '.navItemLink.yourMusic',
         'profile': '.navItemLink.profile',
-        'disclaimer': '.navItemLink.disclaimer',
+        'usageNotice': '.navItemLink.usageNotice',
         'search': '.navItemLink.search'
     };
 
@@ -45,7 +45,7 @@
     }
 
     me.openDisclaimerPage = function () {
-        openPage('disclaimer.php');
+        openPage('usageNotice.php');
     }
 
     me.openSearchPage = function () {
@@ -57,7 +57,7 @@
         $(me.selectors.browse).on('click', me.openBrowsePage);
         $(me.selectors.yourMusic).on('click', me.openYourMusicPage);
         $(me.selectors.profile).on('click', me.openProfilePage);
-        $(me.selectors.disclaimer).on('click', me.openDisclaimerPage);
+        $(me.selectors.usageNotice).on('click', me.openDisclaimerPage);
         $(me.selectors.search).on('click', me.openSearchPage);
     }
 

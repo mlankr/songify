@@ -22,7 +22,7 @@
 				<span role="link" tabindex="0" class="navItemLink profile"><?php echo $userLoggedIn->getFirstAndLastName(); ?> </span>
 			</div>
 			<div class="navItem">
-				<span role="link" tabindex="0" class="navItemLink disclaimer">Disclaimer</span>
+				<span role="link" tabindex="0" class="navItemLink usageNotice">Disclaimer</span>
 			</div>
 		</div>
 	</nav>
