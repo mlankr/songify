@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Check for the argument (path to .env.mysql file)
-if [ $# -eq 0 ]; then
+if [ $# -ne 2 ]; then
   echo "Error: Please provide the path to the .env.mysql file  with DB credentials as the first argument and the task (export/import) as the second argument. X"
   exit 1
 fi
@@ -21,7 +21,7 @@ export_database() {
   echo "Exporting the database..."
 
   # database export command, password through STDIN
-  mysqldump -h "$DB_HOST" -u "$DB_USERNAME" -p "$DB_PASSWORD" "$DB_NAME" > ./db/export.sql
+  mysqldump -h "$DB_HOST" -u "$DB_USERNAME" -p "$DB_NAME" > ./db/export.sql
 }
 
 # Function to import the database
@@ -29,17 +29,17 @@ import_database() {
   echo "Importing the database..."
 
   # database import command, password through STDIN
-  mysql -h "$DB_HOST" -u "$DB_USER" -p "$DB_PASSWORD" "$DB_NAME" < ./db/seedDB/songify.sql
+  mysql -h "$DB_HOST" -u "$DB_USERNAME" -p "$DB_NAME" < ./db/seedDB/songify.sql
 }
 
 # Check for the argument
-if [ $# -eq 0 ]; then
+if [ $# -eq 1 ]; then
   echo "Error: Please provide an argument (export/import). X"
   exit 1
 fi
 
 # Perform action based on the argument
-case $1 in
+case $2 in
 "export")
   export_database
   ;;

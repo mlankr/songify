@@ -19,5 +19,3 @@ services:
       - DB_USERNAME=${DB_USERNAME:-foo}
       - DB_PASSWORD=${DB_PASSWORD:-bar}
       - TIMEZONE=${TIMEZONE:-UTC}
-    volumes:
-      - ./src/public:/var/www/html
