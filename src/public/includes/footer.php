@@ -15,6 +15,5 @@
 <script src="assets/js/settings.js"></script>
 <script src="assets/js/userDetails.js"></script>
 <script src="assets/js/script.js"></script>
-<script src="assets/js/disclaimer.js"></script>
 </body>
 </html>

@@ -22,7 +22,7 @@ function getInputValue($name)
 	<title>Welcome to Songify!</title>
 
 	<link rel="stylesheet" href="assets/css/style.css">
-	<script src="assets/js/jQuery/jquery.min.js"></script>
+	<script src="assets/js/libs/jquery.min.js"></script>
 	<script src="assets/js/register.js"></script>
 </head>
 <body>
