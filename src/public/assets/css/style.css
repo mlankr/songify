@@ -199,6 +199,13 @@ html, body {
   text-align: center;
 }
 
+.gridViewContainer #browseMusic {
+  padding: 20px;
+}
+.gridViewContainer .gridViewItem:last-child {
+  margin-bottom: 150px !important;
+}
+
 #background {
   background: #000 url("../images/bg.jpg") no-repeat center;
   background-size: cover;
@@ -342,10 +349,7 @@ html, body {
 
 #copyrightContainer {
   position: absolute;
-  bottom: 0;
-  /* Align at the bottom */
-  width: 100%;
-  /* Occupy full width of the parent */
+  margin-top: 45px;
   text-align: center;
   /* Center the text horizontally */
 }
@@ -397,6 +401,7 @@ html, body {
 }
 .playListContainer .gridViewContainer {
   margin-bottom: 150px;
+  padding: 20px;
 }
 .playListContainer .gridViewContainer .buttonItems .playlistButton {
   display: block;
@@ -593,7 +598,6 @@ body {
   width: calc(100% - 220px);
 }
 #mainViewContainer #mainContent {
-  padding: 0 20px;
   position: relative;
   height: calc(100% - 90px);
 }

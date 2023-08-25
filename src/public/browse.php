@@ -1,12 +1,12 @@
 <?php
-    include_once("includes/includedFiles.php");
+include_once("includes/includedFiles.php");
 ?>
 
 <h1 class="pageHeadingBig">You Might Also Like</h1>
 
 <div class="gridViewContainer">
-
-    <?php
+	<div id="browseMusic">
+        <?php
         $albumQuery = "SELECT * FROM albums ORDER BY RAND() LIMIT 10";
         $prepareQuery = $pdo->prepare($albumQuery);
         $prepareQuery->execute();
@@ -20,5 +20,6 @@
                         </span>
                 </div>";
         }
-    ?>
+        ?>
+	</div>
 </div>
