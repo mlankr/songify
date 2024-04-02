@@ -27,14 +27,14 @@ jobs:
       - name: Build Docker Image
         run: docker-compose -f docker-compose.web.yml build          # Build the azure application image using docker-compose
 
-      - name: Push Docker Image to ACR
-        run: |
-
-          # Tag the image
-          docker tag ${{ env.IMAGE_WEB }} ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_WEB }}
-
-          # Push the image
-          docker push ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_WEB }}
-          
-          # Logout from ACR
-          docker logout ${{ env.ACR_REGISTRY }}
+#      - name: Push Docker Image to ACR
+#        run: |
+#
+#          # Tag the image
+#          docker tag ${{ env.IMAGE_WEB }} ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_WEB }}
+#
+#          # Push the image
+#          docker push ${{ env.ACR_REGISTRY }}/${{ env.IMAGE_WEB }}
+#
+#          # Logout from ACR
+#          docker logout ${{ env.ACR_REGISTRY }}
