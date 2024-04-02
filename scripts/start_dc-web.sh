@@ -11,9 +11,9 @@ if [ ! -f "$1" ]; then
 fi
 
 # Determine if docker-compose.azure is being run
-if [[ "$1" == "docker-compose.azure.yml" ]]; then
+if [[ "$1" == "docker-compose.web.yml" ]]; then
   # Use .env.azure as the environment file
-  env_file=".env.azure"
+  env_file=".env.web"
 else
   # Use default .env as the environment file
   env_file=".env"

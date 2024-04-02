@@ -19,10 +19,10 @@
 				<span role="link" tabindex="0" class="navItemLink yourMusic">Your Music</span>
 			</div>
 			<div class="navItem">
-				<span role="link" tabindex="0" class="navItemLink profile"><?php echo $userLoggedIn->getFirstAndLastName(); ?> </span>
+				<span role="link" tabindex="0" class="navItemLink usageNotice">Disclaimer</span>
 			</div>
 			<div class="navItem">
-				<span role="link" tabindex="0" class="navItemLink usageNotice">Disclaimer</span>
+				<span role="link" tabindex="0" class="navItemLink profile"><?php echo $userLoggedIn->getFirstAndLastName(); ?> </span>
 			</div>
 		</div>
 	</nav>

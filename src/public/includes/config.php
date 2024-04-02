@@ -8,10 +8,11 @@ $dbHost = getenv('DB_HOST');
 $dbName = getenv('DB_NAME');
 $dbUser = getenv('DB_USERNAME');
 $dbPassword = getenv('DB_PASSWORD');
-$options = (strcasecmp($environment, 'PRODUCTION') === 0) ? [PDO::MYSQL_ATTR_SSL_CA => '/var/www/ssl/DigiCertGlobalRootCA.crt.pem'] : [];
+//$options = (strcasecmp($environment, 'PRODUCTION') === 0) ? [PDO::MYSQL_ATTR_SSL_CA => '/var/www/ssl/DigiCertGlobalRootCA.crt.pem'] : [];
 
 try {
-    $pdo = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPassword, $options);
+//    $pdo = new PDO("mysql:host=$dbHost;port=3306; dbname=$dbName", $dbUser, $dbPassword, $options);
+    $pdo = new PDO("mysql:host=$dbHost;port=3306; dbname=$dbName", $dbUser, $dbPassword);
 
 } catch (PDOException $err) {
     echo "Database connection failed. " . $err->getMessage();

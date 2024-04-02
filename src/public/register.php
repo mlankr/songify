@@ -130,7 +130,7 @@ if (isset($_POST['registerButton'])) {
 				<li>Follow artists to keep up to date</li>
 			</ul>
 			<div id="copyrightContainer">
-				<p>&copy 2023 Songify | Milan Koirala</p>
+				<p>&copy 2024 Songify | Milan Koirala</p>
 			</div>
 		</div>
 	</div>
