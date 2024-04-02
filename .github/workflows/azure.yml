@@ -21,12 +21,12 @@ jobs:
       - name: Checkout main branch from GitHub
         uses: actions/checkout@v2
 
-      - name: Log in to the Azure Container Registry
-        run:  echo ${{ secrets.ACR_REGISTRY_PASSWORD }} | docker login ${{ env.ACR_REGISTRY }} --username ${{ secrets.ACR_REGISTRY_USERNAME }} --password-stdin
-
-      - name: Build Docker Image
-        run: docker-compose -f docker-compose.web.yml build          # Build the azure application image using docker-compose
-
+#      - name: Log in to the Azure Container Registry
+#        run:  echo ${{ secrets.ACR_REGISTRY_PASSWORD }} | docker login ${{ env.ACR_REGISTRY }} --username ${{ secrets.ACR_REGISTRY_USERNAME }} --password-stdin
+#
+#      - name: Build Docker Image
+#        run: docker-compose -f docker-compose.web.yml build          # Build the azure application image using docker-compose
+#
 #      - name: Push Docker Image to ACR
 #        run: |
 #
