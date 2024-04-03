@@ -1,4 +1,5 @@
 <?php
+    header('Access-Control-Allow-Origin: ' . ($_ENV["CORS_ORIGIN"] ?: null)); // Handle CORS: Specify domains from which requests are allowed
 
     if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
         include_once("includes/config.php");

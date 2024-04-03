@@ -1,4 +1,6 @@
 <?php
+header('Access-Control-Allow-Origin: ' . ($_ENV["CORS_ORIGIN"] ?: null)); // Handle CORS: Specify domains from which requests are allowed
+
 include_once("includes/config.php");
 include_once("includes/classes/Account.php");
 include_once("includes/classes/Constants.php");
