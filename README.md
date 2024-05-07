@@ -1,6 +1,6 @@
 # Songify
 
-[![Deploy JAR to Azure Web App](https://github.com/mlankr/songify/actions/workflows/azure.yml/badge.svg)](https://github.com/mlankr/songify/actions/workflows/azure.yml)
+[![Build Web App](https://github.com/mlankr/songify/actions/workflows/azure.yml/badge.svg)](https://github.com/mlankr/songify/actions/workflows/azure.yml)
 
 ---
 
